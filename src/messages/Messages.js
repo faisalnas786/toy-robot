@@ -10,7 +10,7 @@ const Messages = {
     },
     "robot": {
         invalidParam: "Invalid direction param type!",
-        invalidParamValue: "Invalid direction param value:",
+        invalidParamValue: "Invalid direction param value: ",
         outOfSurfaceBoundary: " is out of surface boundary!",
     },
     "utils": {

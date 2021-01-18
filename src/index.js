@@ -1,6 +1,7 @@
-import chalk from "chalk";
 import Robot from "./Robot";
 import Vorpal from "vorpal";
+import {initializeRobotInstance} from "./Initializer.js"
+import {Logs} from "./utils/ErrorLogs.js"
 import Messages from "./messages/Messages";
 
 const vorpal = new Vorpal().delimiter("robotSimulator$");
@@ -12,7 +13,7 @@ const isRobotPositioned = (args) => {
     if (vorpal.activeCommand.parent.robotPositioned) {
         return true;
     } else {
-        process.stdout.write(chalk.red(Messages.index.robotPositioned));
+        Logs(Messages.index.robotPositioned, "red");
         return false;
     }
 };
@@ -25,14 +26,15 @@ const isRobotPositioned = (args) => {
 const setRobotReferenceAndPosition = () => {
     try {
         let data;
-        vorpal.activeCommand.parent.robotSimulator = new Robot();
+        vorpal.activeCommand.parent.robotSimulator = initializeRobotInstance();
         vorpal.activeCommand.parent.robotPositioned = false;
         data = {
             robotSimulator: vorpal.activeCommand.parent.robotSimulator,
             robotPositioned: vorpal.activeCommand.parent.robotPositioned
         };
     } catch (error) {
-        process.stdout.write(chalk.red("Error: " + error.message + "\n"));
+        const errorMessage = "Error: " + err.message + "\n";
+        Logs(errorMessage, "red");
     }
     
 }
@@ -55,7 +57,7 @@ vorpal.command("init",
  * F is direction (facing) (Input can be EAST, WEST, NORTH, SOUTH)
  */
 vorpal.command(
-    "PLACE <X,Y,F>",
+    "PLACE [X,Y,F] Where [X] and [Y] are rebot position coordinates and [F] is a facing direction",
     Messages.index.placeCommand,
                 {})
     .action((args, callback) => {
@@ -68,7 +70,7 @@ vorpal.command(
              * here we will provide error message of length with red color text that passed 
              * arguments are not good in length as per expectation
              */
-            process.stdout.write(chalk.red(Messages.index.placeCommandLength));
+            Logs(Messages.index.placeCommandLength, "red");
           } else {
             /**
              * Desstructure array into x,y,f after doing parts of the command
@@ -92,10 +94,11 @@ vorpal.command(
           }
         } catch (err) {
           error = err;
-         /**
-          * Throw any execption in red color font
-         */
-          process.stdout.write(chalk.red("Error: " + err.message + "\n"));
+            /**
+             * Throw any execption in red color font
+             */
+            const errorMessage = "Error: " + err.message + "\n";
+            Logs(errorMessage, "red");
         }
         callback(error, data);
     });
@@ -114,7 +117,8 @@ vorpal.command(
             data = vorpal.activeCommand.parent.robotSimulator.move();
         } catch (err) {
             error = err;
-            process.stdout.write(chalk.red("Error: " + err.message + "\n"));
+            const errorMessage = "Error: " + err.message + "\n";
+            Logs(errorMessage, "red");
         }
         callback(error, data);
     });
@@ -132,7 +136,8 @@ vorpal.command(
             data = vorpal.activeCommand.parent.robotSimulator.right();
         } catch (err) {
             error = err;
-            process.stdout.write(chalk.red("Error: " + err.message + "\n"));
+            const errorMessage = "Error: " + err.message + "\n";
+            Logs(errorMessage, "red");
         }
     callback(error, data);
 });
@@ -150,7 +155,8 @@ vorpal.command(
             data = vorpal.activeCommand.parent.robotSimulator.left();
         } catch (err) {
             error = err;
-            process.stdout.write(chalk.red("Error: " + err.message + "\n"));
+            const errorMessage = "Error: " + err.message + "\n";
+            Logs(errorMessage, "red");
         }
     callback(error, data);
 });
@@ -166,10 +172,11 @@ vorpal.command(
         let data, error;
         try {
             data = vorpal.activeCommand.parent.robotSimulator.report();
-            process.stdout.write(chalk.blue(data.X + "," + data.Y + "," + data.F + " \n"));
+            Logs(data.X + "," + data.Y + "," + data.F + " \n", "blue");
         } catch (err) {
             error = err;
-            process.stdout.write(chalk.red("Error: " + err.message + "\n"));
+            const errorMessage = "Error: " + err.message + "\n";
+            Logs(errorMessage, "red");
         }
         callback(error, data);
     });
@@ -177,7 +184,8 @@ vorpal.command(
 vorpal.show();
 
 process.on("uncaughtException", (error) => {
-    process.stdout.write(chalk.red("Error: " + error.message + "\n"));
+    const errorMessage = "Error: " + error.message + "\n";
+    Logs(errorMessage, "red");
     vorpal.ui.cancel();
 });
 

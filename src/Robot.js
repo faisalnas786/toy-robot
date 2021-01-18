@@ -1,5 +1,6 @@
 import Messages from "./messages/Messages";
-import Surface from "./Surface";
+import {initializeSurfaceInstance} from "./Initializer.js"
+import {NewException} from "./utils/ErrorLogs.js"
 import { isValidDirection, getDirectionByDegree, getDirectionDegree, getDirectionMoment } from "./utils/DirectionUtils";
 
 class Robot {
@@ -8,7 +9,7 @@ class Robot {
      * Constructor Initialization
      */
     constructor () {
-        this.surface = new Surface();
+        this.surface = initializeSurfaceInstance();
         this.x = null;
         this.y = null;
         this.direction = null;
@@ -19,11 +20,11 @@ class Robot {
      */
     setDirection = direction => {
         if (typeof direction !== "string") {
-            throw new Error(Messages.robot.invalidParam);
+            NewException(Messages.robot.invalidParam);
         }
         direction = direction.toUpperCase();
         if (!isValidDirection(direction)) {
-            throw new Error(Messages.robot.invalidParamValue + direction);
+            NewException(Messages.robot.invalidParamValue + direction);
         }
         this.direction = direction;
     }
@@ -38,7 +39,7 @@ class Robot {
      */
     place = (x, y, f) => {
         if (this.surface.checkSurfaceOutOfBound(x, y)) {
-            throw new Error(x + "," + y + Messages.robot.outOfSurfaceBoundary);
+            NewException(x + "," + y + Messages.robot.outOfSurfaceBoundary);
         } else {
             this.setDirection(f);
             this.x = x;
@@ -56,7 +57,7 @@ class Robot {
         let newCoordinateY = this.y + nextCoordinateY;
 
         if (this.surface.checkSurfaceOutOfBound(newCoordinateX, newCoordinateY)) {
-            throw new Error(newCoordinateX + "," + newCoordinateY + Messages.robot.outOfSurfaceBoundary);
+            NewException(newCoordinateX + "," + newCoordinateY + Messages.robot.outOfSurfaceBoundary);
         } else {
             this.x = newCoordinateX;
             this.y = newCoordinateY;

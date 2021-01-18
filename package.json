@@ -1,5 +1,5 @@
 {
-  "name": "Toy-Robot",
+  "name": "cli",
   "version": "1.0.0",
   "description": "Toy robot REA Group challenge",
   "main": "src/index.js",
@@ -13,9 +13,9 @@
   "author": "abc",
   "license": "MIT",
   "dependencies": {
-    "vorpal": "^1.12.0",
     "chalk": "^4.1.0",
-    "npx": "^10.2.2"
+    "npx": "^10.2.2",
+    "vorpal": "^1.12.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
@@ -23,7 +23,11 @@
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
-    "jest": "^26.6.3"
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1"
   }
 }

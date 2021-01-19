@@ -40,9 +40,8 @@ We need to provide in which environment we have to run these test cases.
 In unit tests we use mocks and we have to clear previous test mocks for running next test case to get more accurate results which is not effected by the previous state.
 
 #### coverageDirectory:
-This is the directory path where we will put all of the test cases coverage data when we will run “npm run coverage | yarn run coverage”.
+This is the directory path where we will put all of the test cases coverage data when we will run **npm run coverage**.
 
-I tried to cover most of the parts of the application but 
 
 ### Chalk (4.1.0):
 Chalk package is used to provide interactive and colourful logging interaction. We can use wide range on colour from text to background and selecting colour families as well.

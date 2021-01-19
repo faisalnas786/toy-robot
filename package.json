@@ -7,6 +7,7 @@
     "build": "npx babel src --out-dir dist -s",
     "start": "npm run build && node --inspect ./dist/index.js",
     "test": "jest src --detectOpenHandles",
+    "coverageReport": "jest --collect-coverage --detectOpenHandles",
     "coverage": "jest --collectCoverageFrom=src/tests/**.js --coverage src --detectOpenHandles"
   },
   "repository": "https://github.com/abc/toy-robot.git",

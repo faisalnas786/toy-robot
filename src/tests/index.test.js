@@ -171,3 +171,57 @@ test('TestCase of PLACE, MOVE, RIGHT , MOVE, REPORT', () => {
         });
     });
 });
+
+test('TestCase of PLACE, LEFT, RIGHT , MOVE, REPORT', () => {
+    vorpal.exec('PLACE 0,0,NORTH', {}, (error, data) => {
+        expect(error).not.toBeDefined();
+        expect(data).toBe(true);
+    });
+    vorpal.exec('LEFT', {}, (error, data) => {
+        expect(error).not.toBeDefined();
+        expect(data).toBe(true);
+    });
+    vorpal.exec('RIGHT', {}, (error, data) => {
+        expect(error).not.toBeDefined();
+        expect(data).toBe(true);
+    });
+    vorpal.exec('MOVE', {}, (error, data) => {
+        expect(error).not.toBeDefined();
+        expect(data).toBe(true);
+    });
+    vorpal.exec('REPORT', {}, (error, data) => {
+        expect(error).not.toBeDefined();
+        expect(data).toEqual({
+            X: 0,
+            Y: 1,
+            F: 'NORTH'
+        });
+    });
+});
+
+test('TestCase of PLACE, RIGHT, LEFT , MOVE, REPORT', () => {
+    vorpal.exec('PLACE 0,0,NORTH', {}, (error, data) => {
+        expect(error).not.toBeDefined();
+        expect(data).toBe(true);
+    });
+    vorpal.exec('RIGHT', {}, (error, data) => {
+        expect(error).not.toBeDefined();
+        expect(data).toBe(true);
+    });
+    vorpal.exec('LEFT', {}, (error, data) => {
+        expect(error).not.toBeDefined();
+        expect(data).toBe(true);
+    });
+    vorpal.exec('MOVE', {}, (error, data) => {
+        expect(error).not.toBeDefined();
+        expect(data).toBe(true);
+    });
+    vorpal.exec('REPORT', {}, (error, data) => {
+        expect(error).not.toBeDefined();
+        expect(data).toEqual({
+            X: 0,
+            Y: 1,
+            F: 'NORTH'
+        });
+    });
+});

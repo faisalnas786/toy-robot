@@ -1,4 +1,4 @@
-import {initializeRobotInstance} from "./../Initializer.js"
+import {initializeRobotInstance} from "./../utils/Initializer.js";
 import Messages from "./../messages/Messages.js";
 
 test('Robot Instantiation Test Case ', () => {

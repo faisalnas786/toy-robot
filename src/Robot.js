@@ -1,5 +1,5 @@
 import Messages from "./messages/Messages";
-import {initializeSurfaceInstance} from "./Initializer.js"
+import {initializeSurfaceInstance} from "./utils/Initializer.js"
 import {NewException} from "./utils/ErrorLogs.js"
 import { isValidDirection, getDirectionByDegree, getDirectionDegree, getDirectionMoment } from "./utils/DirectionUtils";
 

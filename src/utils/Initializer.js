@@ -1,6 +1,6 @@
 
-import Surface from "./Surface.js";
-import Robot from "./Robot.js";
+import Surface from "./../Surface.js";
+import Robot from "./../Robot.js";
 
 /*
  * Checking if toy robot has been positioned/placed on tabletop

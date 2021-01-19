@@ -1,4 +1,4 @@
-import {initializeSurfaceInstance} from "./../Initializer.js"
+import {initializeSurfaceInstance} from "./../utils/Initializer.js";
 
 test('Verify if Surface instatiation is Good', () => {
     let surface = initializeSurfaceInstance(5,5);

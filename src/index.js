@@ -1,6 +1,6 @@
 import Robot from "./Robot";
 import Vorpal from "vorpal";
-import {initializeRobotInstance} from "./Initializer.js"
+import {initializeRobotInstance} from "./utils/Initializer.js"
 import {Logs} from "./utils/ErrorLogs.js"
 import Messages from "./messages/Messages";
 
